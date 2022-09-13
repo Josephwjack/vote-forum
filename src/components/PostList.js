@@ -12,7 +12,10 @@ function PostList(props){
           title={post.title}
           author={post.author}
           body={post.body}
+          upVotes={post.upVotes}
+          downVotes={post.downVotes}
           id={post.id}
+          key={post.id}
           whenPostClicked={props.onPostSelection}
           />
         )}

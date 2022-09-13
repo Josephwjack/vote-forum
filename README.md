@@ -1,6 +1,45 @@
-# Getting Started with Create React App
+# Vote-forum-redux
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
+
+
+
+
+
+
+## Behavior / Logistics
+
+| | |
+|--------|--------|
+| :ballot_box_with_check: | Basic static site build with necessary components|
+| :ballot_box_with_check: | User can enter content into a form and submit to create a new post |
+| :ballot_box_with_check: | User can see all other posts in a list |
+| :ballot_box_with_check: | User can downvote / upvote posts |
+|  | New posts will include a timestamp |
+|  | Posts with the most upvotes will appear higher on the page |
+
+----------
+## Goals
+
+|  |  |
+|----|----|
+| :ballot_box_with_check: | A user can only upvote or downvote a post once |
+|  | Reducers added for selectedpost, formvisible, mainlist |
+|  | Add action types and constants |
+|  | Hide / show content with currentlyselectedpost redux key |
+
+
+## Technologies Used
+
+- React
+- Redux
+
+
+## Known Bugs
+
+
+
 
 ## Available Scripts
 

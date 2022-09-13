@@ -17,8 +17,8 @@ Post.propTypes = {
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
-  // upVotes: PropTypes.number,
-  // downVotes: PropTypes.number,
+  upVotes: PropTypes.number,
+  downVotes: PropTypes.number,
   id: PropTypes.string,
   whenPostClicked: PropTypes.func,
 };

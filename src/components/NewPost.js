@@ -11,6 +11,8 @@ function NewPost(props){
       title: event.target.title.value,
       author: event.target.author.value,
       body: event.target.body.value,
+      upVotes: 0,
+      downVotes: 0,
       id: v4()
     });
   }
