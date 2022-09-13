@@ -10,7 +10,8 @@ class PostControl extends React.Component {
       formVisibleOnPage: false,
       mainPostList: [],
       selectedPost: null,
-      editing: false
+      editing: false,
+      count: 0
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -29,49 +30,84 @@ class PostControl extends React.Component {
     }
   };
 
-handleAddingNewPostToList = (newPost) => {
-  const newMainPostList = this.state.mainPostList.concat(newPost);
-  this.setState({
-    mainPostList: newMainPostList,
-    formVisibleOnPage: false
-  });
-}
-
-handleChangingSelectedPost = (id) => {
-  const selectedPost = this.state.mainPostList.filter(post => post.id === id)[0];
-  this.setState({selectedPost: selectedPost});
-}
-
-handleDeletingPost = (id) => {
-  const newMainPostList = this.state.mainPostList.filter(post => post.id !== id);
-  this.setState({
-    mainPostList: newMainPostList,
-    selectedPost: null
-  });
-}
-
-render() {
-  let currentlyVisibleState = null;
-  let buttonText = null;
-
-  if (this.state.selectedPost !== null){
-    currentlyVisibleState = <PostDetails post = {this.state.selectedPost} onClickingDelete = {this.handleDeletingPost}/>
-    buttonText= "Return to Post List";
-  }
-  else if (this.state.formVisibleOnPage){
-    currentlyVisibleState = <NewPost onNewPostCreation={this.handleAddingNewPostToList} />
-    buttonText = "Return to Post List";
-  } else {
-    currentlyVisibleState = currentlyVisibleState = <PostList postList= {this.state.mainPostList} onPostSelection={this.handleChangingSelectedPost}/>
-    buttonText = "Add New Post";
+  handleAddingNewPostToList = (newPost) => {
+    const newMainPostList = this.state.mainPostList.concat(newPost);
+    this.setState({
+      mainPostList: newMainPostList,
+      formVisibleOnPage: false
+    });
   }
 
-  return(
-    <React.Fragment>
-      {currentlyVisibleState}
-      <button onClick={this.handleClick}>{buttonText}</button>
-    </React.Fragment>
-  )
+  handleChangingSelectedPost = (id) => {
+    const selectedPost = this.state.mainPostList.filter(post => post.id === id)[0];
+    this.setState({selectedPost: selectedPost});
+  }
+
+  handleDeletingPost = (id) => {
+    const newMainPostList = this.state.mainPostList.filter(post => post.id !== id);
+    this.setState({
+      mainPostList: newMainPostList,
+      selectedPost: null
+    });
+  }
+
+
+  handleUpVotes = (id) => {
+    const setCount = this.state.mainPostList.filter(post => post.id === id)[0];
+    if (setCount.count === 1) {
+      return setCount.count;
+    } else {
+      setCount.count +=1;
+    }
+    const editedMainPostList = this.state.mainPostList
+        .filter((post) => post.id !== this.state.selectedPost.id)
+        .concat(setCount);
+      this.setState({
+        mainPostList: editedMainPostList,
+      });
+    }
+  
+  handleDownVotes = (id) => {
+    const setCount = this.state.mainPostList.filter(post => post.id === id)[0];
+    if (setCount.count === -1) {
+      return setCount.count;
+    } else {
+      setCount.count -=1;
+    }
+    const editedMainPostList = this.state.mainPostList
+        .filter((post) => post.id !== this.state.selectedPost.id)
+        .concat(setCount);
+      this.setState({
+        mainPostList: editedMainPostList,
+      });
+    }
+
+
+  render() {
+    let currentlyVisibleState = null;
+    let buttonText = null;
+
+    if (this.state.selectedPost !== null){
+      currentlyVisibleState = <PostDetails post = {this.state.selectedPost}
+      onClickingDelete = {this.handleDeletingPost}
+      onClickingUpVote = {this.handleUpVotes}
+      onClickingDownVote = {this.handleDownVotes}/>
+      buttonText= "Return to Post List";
+    }
+    else if (this.state.formVisibleOnPage){
+      currentlyVisibleState = <NewPost onNewPostCreation={this.handleAddingNewPostToList} />
+      buttonText = "Return to Post List";
+    } else {
+      currentlyVisibleState = currentlyVisibleState = <PostList postList= {this.state.mainPostList} onPostSelection={this.handleChangingSelectedPost}/>
+      buttonText = "Add New Post";
+    }
+
+    return(
+      <React.Fragment>
+        {currentlyVisibleState}
+        <button onClick={this.handleClick}>{buttonText}</button>
+      </React.Fragment>
+    )
   }
 }
 
