@@ -1,6 +1,6 @@
-# Vote-forum-redux
+# Vote-forum (Reddit Clone w/ Redux)
 
-
+## By Daniel Ware & Joseph Jack
 
 
 
