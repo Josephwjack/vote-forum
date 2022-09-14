@@ -5,6 +5,7 @@ import NewPost from "./NewPost";
 import EditPost from "./EditPost";
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
+import * as a from './../actions';
 
 
 class PostControl extends React.Component {
@@ -25,27 +26,17 @@ class PostControl extends React.Component {
       });
     } else {
       const { dispatch } = this.props;
-      const action = {
-        type: 'TOGGLE_FORM'
-      }
+      const action = a.toggleForm();
       dispatch(action);
+      
     }
   };
 
   handleAddingNewPostToList = (newPost) => {
     const { dispatch } = this.props;
-    const { id, title, author, body } = newPost;
-    const action = {
-      type: 'ADD_POST',
-      id: id,
-      title: title,
-      author: author,
-      body: body,
-    }
+    const action = a.addPost(newPost);
     dispatch(action);
-    const action2 = {
-      type: 'TOGGLE_FORM'
-    }
+    const action2 = a.toggleForm();
     dispatch(action2);
   }
 
@@ -56,30 +47,21 @@ class PostControl extends React.Component {
 
   handleDeletingPost = (id) => {
     const { dispatch } = this.props;
-    const action = {
-      type: 'DELETE_POST',
-      id: id
-    }
+    const action = a.deletePost(id);
     dispatch(action);
     this.setState({selectedPost: null});
   }
 
   handleUpVotes = (id) => {
-    const setCount = Object.values(this.props.mainPostList).filter(post => post.id === id)[0];
+    const setCount = this.props.mainPostList[id];
     if (setCount.upVotes === 1) {
       return setCount.upVotes;
     } else {
       setCount.upVotes +=1;
     }
-    this.setState({selectedPost: null})
-    // const editedMainPostList = this.props.mainPostList[id];
-    // this.setState({selectedPost: selectedPost});
-        // .filter((post) => post.id !== this.state.selectedPost.id)
-        // .concat(setCount);
-      // this.setState({
-      //   mainPostList: editedMainPostList,
-      // });
-    }
+    this.setState({setCount: setCount})
+   
+  }
     
   handleDownVotes = (id) => {
     const setCount = this.props.mainPostList[id];
@@ -89,12 +71,7 @@ class PostControl extends React.Component {
     } else {
       setCount.downVotes +=1;
     }
-    this.setState({setCount: setCount})
-    // const editedMainPostList = this.state.mainPostList
-    //   .filter((post) => post.id !== this.state.selectedPost.id)
-    //   .concat(setCount);
-    // this.setState({mainPostList: editedMainPostList});
-   
+    this.setState({setCount: setCount})    
   }
 
   handleEditClick = () => {
@@ -103,14 +80,7 @@ class PostControl extends React.Component {
 
   handleEditingPostInList = (postToEdit) => {
     const { dispatch } = this.props;
-    const { id, title, author, body } = postToEdit;
-    const action = {
-      type: 'ADD_POST',
-      id: id,
-      title: title,
-      author: author,
-      body: body,
-    }
+    const action = a.addPost(postToEdit);
     dispatch(action);  
     this.setState({
       editing: false,
