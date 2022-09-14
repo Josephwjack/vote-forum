@@ -12,4 +12,6 @@ function App() {
   );
 }
 
+// npm install redux@4.2.0 react-redux@8.0.2
+
 export default App;

@@ -14,6 +14,7 @@ function PostDetails(props){
       <hr/>
       <button onClick={() => props.onClickingUpVote(post.id)}>UpVote</button>
       <button onClick={() => props.onClickingDownVote(post.id)}> DownVote </button>
+      <button onClick={ props.onClickingEdit }>Edit Post</button> 
       <button onClick={() => onClickingDelete(post.id) }>Delete Post</button>
     </React.Fragment>
   )
@@ -24,6 +25,7 @@ PostDetails.propTypes = {
   onClickingDelete: PropTypes.func,
   onClickingUpVote: PropTypes.func,
   onClickingDownVote: PropTypes.func,
+  onClickingEdit: PropTypes.func,
 };
 
 export default PostDetails;

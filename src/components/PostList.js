@@ -7,7 +7,7 @@ function PostList(props){
   return (
     <React.Fragment>
       <div>
-        {props.postList.map((post) =>
+        {Object.values(props.postList).map((post) =>
         <Post
           title={post.title}
           author={post.author}
@@ -25,7 +25,7 @@ function PostList(props){
 }
 
 PostList.propTypes = {
-  postList: PropTypes.array,
+  postList: PropTypes.object,
   onPostSelection: PropTypes.func
 };
 
