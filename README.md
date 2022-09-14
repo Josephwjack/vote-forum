@@ -28,6 +28,7 @@
 |  | Reducers added for selectedpost, formvisible, mainlist |
 |  | Add action types and constants |
 |  | Hide / show content with currentlyselectedpost redux key |
+|  | Style page / card or grid - centered |
 
 
 ## Technologies Used
