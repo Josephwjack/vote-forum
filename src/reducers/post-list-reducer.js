@@ -7,8 +7,8 @@ const reducer = (state = {}, action) => {
         title: title,
         author: author,
         body: body,
-        upVotes: upVotes,
-        downVotes: downVotes,
+        upVotes: 0,
+        downVotes: 0,
         id: id
       }
     });

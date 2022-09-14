@@ -71,6 +71,7 @@ class PostControl extends React.Component {
     } else {
       setCount.upVotes +=1;
     }
+    this.setState({selectedPost: null})
     // const editedMainPostList = this.props.mainPostList[id];
     // this.setState({selectedPost: selectedPost});
         // .filter((post) => post.id !== this.state.selectedPost.id)
@@ -88,6 +89,7 @@ class PostControl extends React.Component {
     } else {
       setCount.downVotes +=1;
     }
+    this.setState({setCount: setCount})
     // const editedMainPostList = this.state.mainPostList
     //   .filter((post) => post.id !== this.state.selectedPost.id)
     //   .concat(setCount);
