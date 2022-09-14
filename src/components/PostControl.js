@@ -142,6 +142,7 @@ class PostControl extends React.Component {
 }
 
 const mapStateToProps = state => {
+
   return {
     mainPostList: state.mainPostList,
     formVisibleOnPage: state.formVisibleOnPage
