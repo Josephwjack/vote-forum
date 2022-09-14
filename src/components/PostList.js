@@ -5,21 +5,19 @@ import PropTypes from "prop-types";
 function PostList(props){
 
   return (
-    <React.Fragment>
-      <div>
+    <React.Fragment> 
+      <hr />    
         {Object.values(props.postList).map((post) =>
         <Post
-          title={post.title}
-          author={post.author}
-          body={post.body}
-          upVotes={post.upVotes}
-          downVotes={post.downVotes}
-          id={post.id}
-          key={post.id}
-          whenPostClicked={props.onPostSelection}
-          />
+        whenPostClicked={props.onPostSelection} 
+        title={post.title}
+        author={post.author}
+        body={post.body}
+        upVotes={post.upVotes}
+        downVotes={post.downVotes}
+        id={post.id}
+        key={post.id}/>
         )}
-      </div>
     </React.Fragment>
   );
 }

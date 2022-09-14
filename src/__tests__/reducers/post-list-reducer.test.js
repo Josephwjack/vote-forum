@@ -9,11 +9,15 @@ describe('postListReducer', () => {
       title: 'test1',
       author: 'daniel',
       body: 'Redux action is not working correctly.',
+      upVotes: 0,
+      downVotes: 0,
       id: 1 
     }, 2: {
       title: 'test2',
       author: 'joe',
       body: 'Reducer has side effects.',
+      upVotes: 0,
+      downVotes: 0,
       id: 2 
     }
   }
@@ -22,6 +26,8 @@ describe('postListReducer', () => {
     title: 'test1',
     author: 'daniel',
     body: 'Redux action is not working correctly.',
+    upVotes: 0,
+    downVotes: 0,
     id: 1
   };
 
@@ -62,6 +68,8 @@ describe('postListReducer', () => {
         title: 'test2',
         author: 'joe',
         body: 'Reducer has side effects.',
+        upVotes: 0,
+        downVotes: 0,
         id: 2 
       }
     });

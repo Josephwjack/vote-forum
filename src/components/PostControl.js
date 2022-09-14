@@ -11,7 +11,6 @@ class PostControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formVisibleOnPage: false,
       selectedPost: null,
       editing: false,
     };
@@ -21,14 +20,15 @@ class PostControl extends React.Component {
   handleClick = () => {
     if (this.state.selectedPost != null){
       this.setState({
-        formVisibleOnPage: false,
         selectedPost: null,
         editing: false,
       });
     } else {
-      this.setState(prevState => ({
-        formVisibleOnPage: !prevState.formVisibleOnPage
-      }));
+      const { dispatch } = this.props;
+      const action = {
+        type: 'TOGGLE_FORM'
+      }
+      dispatch(action);
     }
   };
 
@@ -43,7 +43,10 @@ class PostControl extends React.Component {
       body: body,
     }
     dispatch(action);
-    this.setState({ formVisibleOnPage: false });
+    const action2 = {
+      type: 'TOGGLE_FORM'
+    }
+    dispatch(action2);
   }
 
   handleChangingSelectedPost = (id) => {
@@ -62,32 +65,33 @@ class PostControl extends React.Component {
   }
 
   handleUpVotes = (id) => {
-    const setCount = this.props.mainPostList[id];
+    const setCount = Object.values(this.props.mainPostList).filter(post => post.id === id)[0];
     if (setCount.upVotes === 1) {
       return setCount.upVotes;
     } else {
       setCount.upVotes +=1;
     }
-    const editedMainPostList = this.props.mainPostList
-        .filter((post) => post.id !== this.state.selectedPost.id)
-        .concat(setCount);
-      this.setState({
-        mainPostList: editedMainPostList,
-      });
+    // const editedMainPostList = this.props.mainPostList[id];
+    // this.setState({selectedPost: selectedPost});
+        // .filter((post) => post.id !== this.state.selectedPost.id)
+        // .concat(setCount);
+      // this.setState({
+      //   mainPostList: editedMainPostList,
+      // });
     }
-
+    
   handleDownVotes = (id) => {
-    const setCount = this.state.mainPostList.filter(post => post.id === id)[0];
+    const setCount = this.props.mainPostList[id];
     console.log(setCount);
-    if (setCount.downVotes === -1) {
+    if (setCount.downVotes === 1) {
       return setCount.downVotes;
     } else {
-      setCount.downVotes -=1;
+      setCount.downVotes +=1;
     }
-    const editedMainPostList = this.state.mainPostList
-      .filter((post) => post.id !== this.state.selectedPost.id)
-      .concat(setCount);
-    this.setState({mainPostList: editedMainPostList});
+    // const editedMainPostList = this.state.mainPostList
+    //   .filter((post) => post.id !== this.state.selectedPost.id)
+    //   .concat(setCount);
+    // this.setState({mainPostList: editedMainPostList});
    
   }
 
@@ -128,12 +132,12 @@ class PostControl extends React.Component {
       onClickingEdit = {this.handleEditClick}/>
       buttonText= "Return to Post List";
     }
-    else if (this.state.formVisibleOnPage){
+    else if (this.props.formVisibleOnPage){
       currentlyVisibleState = <NewPost onNewPostCreation={this.handleAddingNewPostToList} />
       buttonText = "Return to Post List";
     } 
      else {
-      currentlyVisibleState = currentlyVisibleState = <PostList postList= {this.props.mainPostList} onPostSelection={this.handleChangingSelectedPost}/>
+      currentlyVisibleState = <PostList postList= {this.props.mainPostList} onPostSelection={this.handleChangingSelectedPost}/>
       buttonText = "Add New Post";
     }
 
@@ -149,11 +153,13 @@ class PostControl extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    mainPostList: state
+    mainPostList: state.mainPostList,
+    formVisibleOnPage: state.formVisibleOnPage
   }
 }
 PostControl.propTypes = {
-  mainPostList: PropTypes.object
+  mainPostList: PropTypes.object,
+  formVisibleOnPage: PropTypes.bool
 };
 
 PostControl = connect(mapStateToProps)(PostControl);
