@@ -43,4 +43,31 @@ describe("rootReducer", () => {
     store.dispatch(action);
     expect(store.getState().formVisibleOnPage).toEqual(formVisibleReducer(undefined, action));
   });
+
+  it('updateTime should create UPDATE_TIME action', () => {
+    expect(actions.updateTime(1, 'less than a minute ago')).toEqual({
+      type: c.UPDATE_TIME,
+      id: 1,
+      formattedWaitTime: 'less than a minute ago'
+    });
+  });
+
+  it('addPost should create ADD_POST action', () => {
+    expect(actions.addTicket({
+      title: 'test1', 
+      author: 'daniel', 
+      body: 'Redux not working!', 
+      timeOpen: 0,
+      formattedWaitTime: 'less than a minute ago', 
+      id: 1
+    })).toEqual({
+      type: c.ADD_POST,
+      title: 'test1',
+      author: 'daniel',
+      body: 'Redux not working!',
+      timeOpen: 0,
+      formattedWaitTime: 'less than a minute ago',
+      id: 1
+    });
+  });
 });

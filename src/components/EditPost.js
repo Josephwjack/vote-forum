@@ -13,7 +13,9 @@ function EditPost(props) {
       body: event.target.body.value,
       upVotes: 0,
       downVotes: 0,
-      id: post.id })
+      id: post.id,
+      timeOpen: post.timeOpen,
+      formattedWaitTime: post.formattedWaitTime });
   }
   return (
     <React.Fragment>

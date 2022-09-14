@@ -16,7 +16,8 @@ function PostList(props){
         upVotes={post.upVotes}
         downVotes={post.downVotes}
         id={post.id}
-        key={post.id}/>
+        key={post.id}
+        formattedWaitTime={post.formattedWaitTime}/>
         )}
     </React.Fragment>
   );

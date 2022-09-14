@@ -16,7 +16,7 @@
 | :ballot_box_with_check: | User can enter content into a form and submit to create a new post |
 | :ballot_box_with_check: | User can see all other posts in a list |
 | :ballot_box_with_check: | User can downvote / upvote posts |
-|  | New posts will include a timestamp |
+| :ballot_box_with_check: | New posts will include a timestamp |
 |  | Posts with the most upvotes will appear higher on the page |
 
 ----------

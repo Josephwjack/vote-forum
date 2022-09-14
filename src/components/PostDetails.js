@@ -11,6 +11,7 @@ function PostDetails(props){
       <h3>Author: {post.author}</h3>
       <h3>{post.body}</h3>
       <p><em>UpVotes: {parseInt(post.upVotes)} | DownVotes: {parseInt(post.downVotes)}</em></p>
+      <p>{post.formattedWaitTime}</p>
       <hr/>
       <button onClick={() => props.onClickingUpVote(post.id)}>UpVote</button>
       <button onClick={() => props.onClickingDownVote(post.id)}> DownVote </button>

@@ -1,6 +1,6 @@
 import postListReducer from '../../reducers/post-list-reducer';
 import * as c from '../../actions/ActionTypes';
-
+import { formatDistanceToNow } from 'date-fns';
 
 describe('postListReducer', () => {
 
@@ -30,6 +30,10 @@ describe('postListReducer', () => {
     body: 'Redux action is not working correctly.',
     upVotes: 0,
     downVotes: 0,
+    timeOpen : new Date(),
+    formattedWaitTime: formatDistanceToNow(new Date(), {
+      addSuffix: true
+    }),
     id: 1
   };
 
@@ -44,6 +48,8 @@ describe('postListReducer', () => {
       title: title,
       author: author,
       body: body,
+      timeOpen: timeOpen,
+      formattedWaitTime: formattedWaitTime,
       upVotes: 0,
       downVotes: 0,
       id: id
@@ -53,6 +59,8 @@ describe('postListReducer', () => {
         title: title,
         author: author,
         body: body,
+        timeOpen: timeOpen,
+        formattedWaitTime: 'less than a minute ago',
         upVotes: 0,
         downVotes: 0,
         id: id
@@ -73,6 +81,25 @@ describe('postListReducer', () => {
         upVotes: 0,
         downVotes: 0,
         id: 2 
+      }
+    });
+  });
+
+  test('Should add a formatted wait time to post entry', () => {
+    const { title, author, body, timeOpen, id } = postData;
+    action = {
+      type: c.UPDATE_TIME,
+      formattedWaitTime: '4 minutes ago',
+      id: id
+    };
+    expect(postListReducer({ [id] : postData }, action)).toEqual({
+      [id] : {
+        title: title,
+        author: author,
+        body: body,
+        timeOpen: timeOpen,
+        id: id,
+        formattedWaitTime: '4 minutes ago'
       }
     });
   });
