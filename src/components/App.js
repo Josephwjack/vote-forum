@@ -4,13 +4,15 @@ import PostControl from "./PostControl";
 import Header from './Header';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-
+import { Grid } from '@mui/material';
 
 function App() {
   return (
     <React.Fragment>
-      <Header/>         
-      <PostControl/>     
+        <Grid item><Header/></Grid> 
+        
+          <PostControl/>
+         
     </React.Fragment>
   );
 }

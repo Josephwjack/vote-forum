@@ -1,10 +1,21 @@
-import React from "react";
-import Nav from 'reactstrap';
+import React from 'react';
+import { Navbar, NavbarText } from 'reactstrap';
 
 function Header() {
+  
   return(
-
-    <h1>Vote Forum</h1>
+    <Navbar
+    className="my-2"
+    color="dark"
+    dark
+  >
+    <NavbarText>
+      
+      Forum & Fauna
+    </NavbarText>
+    
+  </Navbar>
+   
   );
 }
 
