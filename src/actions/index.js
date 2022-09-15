@@ -15,6 +15,10 @@ export const toggleForm = () => ({
   type: c.TOGGLE_FORM
 });
 
+export const toggleEditForm = () => ({
+  type: c.TOGGLE_EDIT_FORM
+});
+
 export const addPost = (post) => {
   const { title, author, body, id, formattedWaitTime, timeOpen } = post;
   return {

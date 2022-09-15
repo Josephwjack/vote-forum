@@ -9,12 +9,12 @@ function PostDetails(props){
   return (
     <React.Fragment>
       <div className="col d-flex justify-content-center text-center">
-        <Typography>
+        <Typography component={'span'} variant={'body2'}>
           <Card style={{ width: '50rem', padding: '10px', margin: 0, float: 'none'}}>
             <CardBody>
              
             <CardTitle >
-              <h1>{post.title}</h1>
+              <h3>{post.title}</h3>
               <hr/>
             </CardTitle>
               <CardSubtitle>

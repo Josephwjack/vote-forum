@@ -14,22 +14,24 @@ class PostControl extends React.Component {
     super(props);
     this.state = {
       selectedPost: null,
-      editing: false,
+      // editing: false,
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick = () => {
     if (this.state.selectedPost != null){
+      const { dispatch } = this.props;
+      const action = a.toggleEditForm();
+        dispatch(action);
+    } else {
+    const { dispatch } = this.props;
+    const action2 = a.toggleForm();
+    dispatch(action2);
       this.setState({
         selectedPost: null,
-        editing: false,
-      });
-    } else {
-      const { dispatch } = this.props;
-      const action = a.toggleForm();
-      dispatch(action);
-      
+        // editing: false,
+      });  
     }
   };
 
@@ -76,16 +78,19 @@ class PostControl extends React.Component {
   }
 
   handleEditClick = () => {
-    this.setState({editing: true});
+   const { dispatch } = this.props;
+   const action = a.toggleEditForm();
+   dispatch(action);
   }
 
   handleEditingPostInList = (postToEdit) => {
     const { dispatch } = this.props;
     const action = a.addPost(postToEdit);
-    dispatch(action);  
+    dispatch(action);
+    const action2 = a.toggleEditForm();
+    dispatch(action2);  
     this.setState({
-      editing: false,
-
+      // editing: false,
       selectedPost: null
     });
   }
@@ -116,7 +121,7 @@ class PostControl extends React.Component {
     let buttonText = null;
 
 
-    if (this.state.editing === true){
+    if (this.props.editing){
       currentlyVisibleState = <EditPost post = {this.state.selectedPost} onEditPost = {this.handleEditingPostInList}/>
       buttonText = "Return to Post List";
     }
@@ -156,12 +161,14 @@ const mapStateToProps = state => {
 
   return {
     mainPostList: state.mainPostList,
-    formVisibleOnPage: state.formVisibleOnPage
+    formVisibleOnPage: state.formVisibleOnPage,
+    editing: state.editing,
   }
 }
 PostControl.propTypes = {
   mainPostList: PropTypes.object,
-  formVisibleOnPage: PropTypes.bool
+  formVisibleOnPage: PropTypes.bool,
+  editing: PropTypes.bool
 };
 
 PostControl = connect(mapStateToProps)(PostControl);

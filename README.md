@@ -2,9 +2,12 @@
 
 ## By Daniel Ware & Joseph Jack
 
+### Description
+Reddit style forum site. Created for practice and utilizing redux to handle local and shared state. Users can add a new posts, edit, and delete. Users can see the full list of posts and after selecting one can choose to upvote or downvote that post.
 
+### Diagram
 
-
+<div style="display: flex; justify-content: center"><img src="/diagram.png"></div>
 
 
 
@@ -25,10 +28,9 @@
 |  |  |
 |----|----|
 | :ballot_box_with_check: | A user can only upvote or downvote a post once |
-|  | Reducers added for selectedpost, formvisible, mainlist |
-|  | Add action types and constants |
-|  | Hide / show content with currentlyselectedpost redux key |
-|  | Style page / card or grid - centered |
+| :ballot_box_with_check: | Add action types and constants |
+| :ballot_box_with_check: | Style page / card or grid - centered |
+|  | Reducer added for selectedpost|
 
 
 ## Technologies Used
@@ -39,6 +41,8 @@
 
 ## Known Bugs
 
+- Issue with typography import from MUI Material. Still work in progress.
+- Edit form does not autopopulate with previous data.
 
 
 
@@ -69,7 +73,5 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 

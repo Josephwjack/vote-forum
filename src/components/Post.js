@@ -6,8 +6,8 @@ function Post(props) {
   return (
     <React.Fragment>
       <div onClick = {() => props.whenPostClicked(props.id)}>
-        <h3>{props.title}</h3>
-        <h3>{props.author}</h3>
+        <h2>{props.title}</h2>
+        <h6>{props.author}</h6>
         <p><em>{props.formattedWaitTime}</em></p>
         <hr/>
       </div>

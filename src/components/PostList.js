@@ -13,7 +13,7 @@ function PostList(props){
         }}>
         <div className="col d-flex-row justify-content-center ">   
           <List type="unstyled">
-            <Typography>
+            <Typography component={'span'} variant={'body2'}>
             {Object.values(props.postList).map((post) =>
             <Post
             whenPostClicked={props.onPostSelection} 
