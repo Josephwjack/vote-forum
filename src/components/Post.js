@@ -8,6 +8,8 @@ function Post(props) {
       <div onClick = {() => props.whenPostClicked(props.id)}>
         <h3>{props.title}</h3>
         <h3>{props.author}</h3>
+        <p><em>{props.formattedWaitTime}</em></p>
+        <hr/>
       </div>
     </React.Fragment>
   )
@@ -21,6 +23,7 @@ Post.propTypes = {
   downVotes: PropTypes.number,
   id: PropTypes.string,
   whenPostClicked: PropTypes.func,
+  formattedWaitTime: PropTypes.string
 };
 
 export default Post;
